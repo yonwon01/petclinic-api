@@ -1,4 +1,4 @@
-def label = "petclinic-api-${UUID.randomUUID().toString()}
+def label = "petclinic-api-${UUID.randomUUID().toString()}"
 
 
 podTemplate(label: label, 
