@@ -72,10 +72,10 @@ podTemplate(label: label,
 							  credentialsId: 'registry-credentials',
 							  usernameVariable: 'DOCKER_HUB_USER',
 							  passwordVariable: 'DOCKER_HUB_PASSWORD']]) {
-			  
-			  sh "kubectl apply -n ${namespace} -f ${deployment}"
+	
+			  sh "kubectl create -n ${namespace} -f ${deployment}"
 			  sh "sleep 5"
-			  sh "kubectl apply -n ${namespace} -f ${service}"
+			  sh "kubectl create -n ${namespace} -f ${service}"
 		  }
 		}
 	  }
