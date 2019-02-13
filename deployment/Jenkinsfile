@@ -17,6 +17,10 @@ podTemplate(label: label,
 	  stage('Get Source') {
 		git "https://github.com/yonwon01/petclinic-api.git"
 	  }
+          
+          stage('Get Source') {
+		git "https://github.com/yonwon01/petclinic-java.git"
+	  }
 
 	  def props = readProperties  file:'deployment/pipeline.properties'
 	  def tag = props['version']
@@ -46,7 +50,7 @@ podTemplate(label: label,
 	  stage('Build Docker image') {
 		container('docker') {
 		  docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
-			sh "docker build . -t ${image}"
+			  sh "docker build -t ${image} ."
 			  sh "docker push ${image}:${tag}"
 			//sh "docker tag ${image}:${tag} ${image}:latest"
 			//sh "docker push ${image}:latest"
