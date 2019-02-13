@@ -13,9 +13,9 @@ podTemplate(label: label,
 	node(label) {
 	try {
 		
-	  
-	  
-        
+	  stage('Get Source') {
+		git "https://github.com/yonwon01/petclinic-api.git"
+	  }
 
 	  def props = readProperties  file:'deployment/pipeline.properties'
 	  def tag = props['version']
@@ -43,9 +43,7 @@ podTemplate(label: label,
   -Dsonar.login=da97e0439d7b6a3834fb0d3a295c1b84630a369f"
 		}
 	  }*/
-	  stage('Get Source') {
-		git "https://github.com/yonwon01/petclinic-api.git"
-	  }
+	  
 	  stage('Build Docker image') {
 		container('docker') {
 		  docker.withRegistry("${dockerRegistry}", 'registry-credentials') {
