@@ -13,6 +13,17 @@ podTemplate(label: label,
 	node(label) {
 	try {
 		
+	
+	  stage('Get Source') {
+		git "https://github.com/yonwon01/petclinic-java.git"
+	  }
+	  stage('Build Maven project') {
+		container('maven') {
+			sh "mvn -B clean package"
+		}
+	  }	
+		
+		
 	  stage('Get Source') {
 		git "https://github.com/yonwon01/petclinic-api.git"
 	  }
@@ -27,14 +38,6 @@ podTemplate(label: label,
 	  def selector = props['selector']
 	  def namespace = props['namespace']
 
-	 /* stage('Get Source') {
-		git "https://github.com/yonwon01/petclinic-java.git"
-	  }
-	  stage('Build Maven project') {
-		container('maven') {
-			sh "mvn -B clean package"
-		}
-	  }*/
 		
 	 /* stage('Inspection Code') {
 		container('maven') {
