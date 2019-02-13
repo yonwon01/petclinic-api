@@ -18,9 +18,9 @@ podTemplate(label: label,
 		git "https://github.com/yonwon01/petclinic-api.git"
 	  }
           
-          stage('Get Source') {
+        /*  stage('Get Source') {
 		git "https://github.com/yonwon01/petclinic-java.git"
-	  }
+	  }*/
 
 	  def props = readProperties  file:'deployment/pipeline.properties'
 	  def tag = props['version']
